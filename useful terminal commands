@@ -1,0 +1,11 @@
+USE TAB BUTTON FOR AUTOCOMPLETION
+
+rm -rf directoryName                   -> removes the directory and all files and subfolders
+rm -r directoryName                    -> removes the directory and all files and subfolders but asks if the user wants to delete each file
+mkdir directoryName                    -> creates new directory
+ls -A                                  -> lists all files and folders in the current directory
+someApp --version                      -> shows the version of the specified software (ex. java --version)
+touch fileName                         -> creates new file
+chmod +x fileName                      -> makes the file executable
+ifconfig                               -> shows network configuration
+
