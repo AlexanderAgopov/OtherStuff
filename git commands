@@ -1,0 +1,128 @@
+USE TAB BUTTON FOR AUTOCOMPLETION
+
+git config --global user.name "user_name" -> this configuration is done after installation in most cases
+git config --global user.email "email_id" -> this configuration is done after installation in most cases
+
+git --version
+git <verb> --help  (example: git config --help)
+git init                              -> creates an empty local repository
+git status 
+touch .gitignore                      -> creates new file in which you can store the names of the files that you don't want to be seen by people using the repository
+git add <file>                        -> adds specific file
+git add -A                            -> adds all files
+git commit -m "message"               -> commits changes to repository, -m stands for message and after it is the message in surrounded by double quotes
+git reset <file>                      -> removes the file from the staging area
+git reset                             -> removes all files from staging area   
+git log                               -> returns the unique hash number of the commit, author, date and time of the commit
+git clone <url> <where to clone> .    -> clones remote repository to specific folder
+git clone <url> .                     -> clones remote repository in the present folder (the point in the end of the command means the same directory)
+git remote add origin <url> 
+git remote -v                         -> shows information about the remote repository
+git branch -a                         -> lists all branches in the repository (locally and remotely)
+git diff                              -> shows the changes made to the code
+git branch <branchName>               -> creates a new branch
+git branch -b <branchName>            -> creates new branch and switches to it 
+git branch                            -> lists all local branches
+git checkout <branchName>             -> starts working on the specified branch
+git branch -d <branchName>            -> deletes the specified branch
+git branch -D <branchName>            -> deletes the specified branch
+git push origin --delete <branchNname> -> deletes remote branch
+git push -u origin <branchName>       -> adds the specified local branch to the remote repository
+git branch --merged                   -> lists all branches that have been already merged
+git merge <branchName>                -> merges the specified branch with the branch currently operated 
+                                      (sometimes we have to use git checkout command first, ex. git checkout master and after that git merge branch)
+git push origin --delete <branchName> -> deletes remote branch
+git pull                              -> pulls everything
+git pull origin <branchName>          -> pulls the specified branch
+git remote add origin <url>           -> adds origin 
+
+
+
+
+
+
+
+
+
+
+
+Примерен цикъл на работа, използвайки git
+
+1. git clone/git init със съответните параметри, зада клонирате или създадете repository
+2. нанесете локално промените, които искате
+3. git status - да проверите по кои файлове сте направили промени
+4. git add ./ git add filename - в зависимост от това дали искате да потвърдите (stage-нете) 
+всички файлове с промени или само определени
+5. git status - проверявате дали всичко , което сте stage-нали на предната стъпка е готово за commit (файловете светят в зелено)
+6. git commit -m "some message" - commit-вате всички промени
+7. git status - проверявате дали всичко е commit-нато. Трябва да ви пише нещо от рода на 
+nothing to commit.... your branch is ahead of....
+8. git pull --rebase - синхронизирате се с последните промени от remote branch-а.
+Ако има конфликти решавате конфликта и изпълнявате стъпка 6.
+9. git status - трябва да няма неща за commit-ване (светещи в зелено). Ако има изпълнявате пак стъпка 6.
+10. git push/git push origin master - push-вате промените си към remote branch-а (промените ви стават достъпни и за другите)
+
+
+
+
+Git Conflict
+
+﻿1. Open cmd (shift + F10) from the folder where you want
+2. mkdir git-conflict
+Създаване на папка
+3. cd git-conflict
+Навигиране до папката
+4. git init
+Създаване на git repository
+5. Създаване на test.txt файл в папката с текст на първи ред abc
+6. git add .
+7. git commit -m 'initial commit'
+8. git checkout -b new_branch
+9. Отваряне на файла и промяна на текста на adc
+10. git add .
+11. git commit -m 'first commit on new_branch'
+12. git checkout master
+13. Отваряне на файла и промяна на текста на aec
+14. git commit -am 'second commit on master'
+15. git merge new_branch
+16. ръчно решаване на конфликта
+17. git commit -m "conflict resolved"
+
+
+
+Git push: “fatal 'origin' does not appear to be a git repository - fatal Could not read from remote repository.”
+1. First, check that your origin is set by running
+
+git remote -v
+
+This should show you all of the push / fetch remotes for the project. If this returns with no output, skip to last code block.
+
+2. Verify remote name / address
+
+If this returns showing that you have remotes set, check that the name of the remote matches the remote you are using in your commands.
+
+$git remote -v
+myOrigin ssh://git@example.com:1234/myRepo.git (fetch)
+myOrigin ssh://git@example.com:1234/myRepo.git (push)
+
+# this will fail because `origin` is not set
+$git push origin master
+
+# you need to use
+$git push myOrigin master
+If you want to rename the remote or change the remote's URL, you'll want to first remove the old remote, and then add the correct one.
+
+3. Remove the old remote
+
+$git remote remove myOrigin
+Add missing remote
+
+4. You can then add in the proper remote using
+
+$git remote add origin ssh://git@example.com:1234/myRepo.git
+
+# this will now work as expected
+$git push origin master
+
+
+
